@@ -76,10 +76,28 @@ There aren't many tests, I've only added some for `LogService`.
 - validate inputs (the POST data)
 - made sure the client would never time out
 
+### CI/CD
+
+I've never used github actions so I'd rather explain the expected workflow rather than provide some untested boilerplate code found online or generated with chatgpt/copilot. I also have no experience with GCP so I'll assume it works somewhat the same way as AWS for simple container deployments, ie with a repository (ECR) and a hosting service (ECS).
+
+The pipeline would test the code, build the container image and deploy them to a container service that hosts the API and allows clients to send requests to it.
+
+I'm assuming that the redis server is hosted by a specific service or managed somewhere else anyway, with some IaC.
+
+Here's what I would expect of the CI/CD pipeline to have:
+
+- separate workflows per environment
+- a test job that runs tests and makes the workflow fail if they don't pass
+- a build job that builds the container image and stores it in a specific repository
+- a deployment job that deploys the container image onto a container hosting service, where it'll run
+- a notification job or function call to inform developers or other relevant users about the deployment's success or error
+
+Depending on the development flow, it could be a bit more evolved and automatically tag and deploy anytime commits are pushed to the master branch. If there are staging and/or dev environments, the workflows could be similar but depend on actions made on specific branches.
 
 ---
 
 **Original readme:**
+
 ## Guidelines
 
 - Solve the levels in ascending order
