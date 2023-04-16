@@ -28,6 +28,54 @@ Run tests with `npm run test`.
 
 There aren't many tests, I've only added some for `LogService`.
 
+### Level 2
+
+Run `make level2`. It will:
+
+- build the docker container for the api
+- build the docker container for the redis server (without RedisInsight)
+- run `npm run logs:emit`
+- stop the docker containers
+
+The parsed logs will be stored in `level2/redis-data`.
+
+To view them, you can launch a server with [RedisInsight](http://localhost:8001):
+
+- `docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest`
+- or `cd level2 && npm run dev:redis`
+
+**Unfortunately, the docker containers must be stopped manually, so a second command must be run: `make stop-level2`.** This is because I couldn't figure out how to make `docker stop` wait for the processes to be done (I've tried using pm2 or forking child processes, to no avail).
+
+#### Dev
+
+To develop, cd to the `level2` folder.
+
+Install the packages with `npm i`.
+
+Launch a local redis server: `npm run dev:redis`.
+
+Run `npm run dev:watch` to use nodemon.
+
+You can view the redis server's contents with [RedisInsight](http://localhost:8001).
+
+Once you're done, stop the redis server: `npm run dev:redis:stop`.
+
+#### Test
+
+Run tests with `npm run test`.
+
+There aren't many tests, I've only added some for `LogService`.
+
+## What I would have done with more time
+
+- add more dev streamlining config: commitlint, husky...
+- add more config: parsed folder path, port, redis ports...
+- write more unit tests (not sure how useful that would be)
+- perhaps write e2e tests (to validate the timeout behavior)
+- improve the docker-compose experience to make it useful in dev (especially in level2)
+- validate inputs (the POST data)
+- made sure the client would never time out
+
 
 ---
 

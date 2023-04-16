@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  level2-api:
+    container_name: level2-api
+    image: level2-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - REDIS_HOST=redis
+    ports:
+      - 3000:3000
+  redis:
+    container_name: redis
+    image: redis/redis-stack
+    ports:
+      - 6379:6379
+      - 8001:8001
