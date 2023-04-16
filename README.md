@@ -1,5 +1,37 @@
 # Beamy technical test
 
+## How to use
+
+### Level 1
+
+Run `make level1`. It will:
+
+- build the docker container for the api
+- run `npm run logs:emit`
+- stop the docker container
+
+The parsed logs will be stored in `level1/parsed`.
+
+**Unfortunately, the docker containers must be stopped manually, so a second command must be run: `make stop-level1`.** This is because I couldn't figure out how to make `docker stop` wait for the processes to be done (I've tried using pm2 or forking child processes, to no avail).
+
+#### Dev
+
+To develop, cd to the `level1` folder.
+
+Install the packages with `npm i`.
+
+Run `npm run dev:watch` to use nodemon.
+
+#### Test
+
+Run tests with `npm run test`.
+
+There aren't many tests, I've only added some for `LogService`.
+
+
+---
+
+**Original readme:**
 ## Guidelines
 
 - Solve the levels in ascending order

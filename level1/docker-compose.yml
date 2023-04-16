@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  level1-api:
+    container_name: level1-api
+    image: level1-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./parsed:/home/node/app/parsed
