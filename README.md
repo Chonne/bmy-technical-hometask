@@ -1,5 +1,13 @@
 # Beamy technical test
 
+More details about the task in the [original readme](#guidelines) below.
+
+## What's wrong with my work
+
+- SOLID principles weren't always respected
+- something more than a simple api was expected
+- tests could've been refactored
+
 ## How to use
 
 ### Level 1
